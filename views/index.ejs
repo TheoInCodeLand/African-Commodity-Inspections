@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>African Commodity Inspection | Mining & Cargo Inspection South Africa</title>
+  <meta name="description" content="African Commodity Inspection is a South African mining and commodity inspection company providing independent quantity, quality and safety inspections across Africa." />
+  <link rel="shortcut icon" href="./assets/aci.jpeg" type="image/x-icon">
+  <style>
+    :root {
+      --bg: #050509;
+      --bg-alt: #0c0f16;
+      --card: #111623;
+      --accent: #8d4600;              /* Orange */
+      --accent-soft: rgba(255, 122, 26, 0.12);
+      --text-main: #f7f7fb;
+      --text-muted: #9ba3b5;
+      --border-subtle: #1e2535;
+      --danger: #e45b5b;
+      --success: #46c38a;
+
+      --max-width: 1120px;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.6);
+
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: radial-gradient(circle at top, #151b28 0, #050509 52%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 5, 9, 0.96),
+        rgba(5, 5, 9, 0.9),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      gap: 1.25rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 10%, #ffe8d6, #ff7a1a 35%, #7c3b10 90%);
+      position: relative;
+      box-shadow: 0 12px 40px rgba(255, 122, 26, 0.25);
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.27);
+      transform: rotate(-18deg);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      padding-block: 0.35rem;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.3rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #ffc499);
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 18px;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav-chip {
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 0.62rem 1.3rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: transform 0.1s ease-out, box-shadow 0.1s ease-out,
+        background 0.12s ease-out, color 0.12s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #ffc499);
+      color: #1a120c;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.75);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 3rem 0 2.75rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 122, 26, 0.5);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 122, 26, 0.13),
+        rgba(24, 20, 10, 0.9)
+      );
+      color: var(--accent);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-eyebrow span {
+      height: 8px;
+      width: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.4);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 2.9rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.18;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      max-width: 36rem;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-metas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .hero-metas strong {
+      color: var(--text-main);
+    }
+
+    .hero-metas span {
+      display: block;
+    }
+
+    .hero-right {
+      position: relative;
+    }
+
+    .hero-img-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-img-tag {
+      position: absolute;
+      bottom: 0.9rem;
+      left: 0.9rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-pill);
+      background: rgba(5, 5, 9, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      backdrop-filter: blur(10px);
+    }
+
+    /* SECTION GENERIC */
+    section {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title {
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .section-copy {
+      max-width: 32rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* TRUST / PARTNERS */
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0.9rem 1rem;
+      border-radius: var(--radius-md);
+      background: rgba(5, 5, 9, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .trust-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      opacity: 0.7;
+    }
+
+    .trust-pill {
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    /* SERVICES */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, #161c29, #050509 58%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 1.2rem 1.2rem 1.3rem;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .card-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .card-badge {
+      padding: 0.2rem 0.65rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 122, 26, 0.55);
+      font-size: 0.68rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      white-space: nowrap;
+    }
+
+    .card-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 160px;
+    }
+
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-body {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .card-list {
+      list-style: none;
+      display: grid;
+      gap: 0.32rem;
+      font-size: 0.82rem;
+      color: var(--text-main);
+    }
+
+    .card-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-right: 0.4rem;
+    }
+
+    /* STATS BAND */
+    .stats-band {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.25rem;
+      padding: 1.15rem 1.3rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(
+        120deg,
+        rgba(40, 23, 11, 0.96),
+        rgba(5, 5, 9, 0.96)
+      );
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .stat-number {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* PROCESS */
+    .process-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .step-list {
+      list-style: none;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .step-index {
+      height: 26px;
+      width: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 122, 26, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: rgba(5, 5, 9, 0.95);
+    }
+
+    .step-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.15rem;
+    }
+
+    .step-copy {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .process-card {
+      border-radius: var(--radius-lg);
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      padding: 1.1rem 1.2rem;
+      background: rgba(5, 5, 9, 0.9);
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .process-card strong {
+      color: var(--text-main);
+    }
+
+    .process-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .process-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* INDUSTRIES / REGIONS */
+    .pill-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      padding: 0.32rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      background: rgba(5, 5, 9, 0.9);
+    }
+
+    .pill.highlight {
+      border-color: rgba(255, 122, 26, 0.7);
+      color: var(--accent);
+      background: rgba(255, 122, 26, 0.1);
+    }
+
+    .commodities-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .commodities-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .commodities-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* CREDIBILITY / AUDITS */
+    .audit-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .audit-card {
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, #161c29, #050509 55%);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .audit-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .audit-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .audit-list {
+      list-style: none;
+      display: grid;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--text-main);
+    }
+
+    .audit-list li::before {
+      content: "▸";
+      color: var(--accent);
+      margin-right: 0.4rem;
+    }
+
+    .audit-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-height: 170px;
+    }
+
+    .audit-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-tag {
+      position: absolute;
+      left: 0.6rem;
+      bottom: 0.6rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: var(--radius-pill);
+      background: rgba(5, 5, 9, 0.82);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
+      gap: 1.75rem;
+      align-items: flex-start;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top, #161c29, #050509 55%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .field {
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .input,
+    .textarea,
+    .select {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(5, 5, 9, 0.9);
+      padding: 0.7rem 0.9rem;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.15s ease-out, box-shadow 0.15s ease-out,
+        background 0.15s ease-out;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .textarea {
+      border-radius: 14px;
+      min-height: 90px;
+      resize: vertical;
+      line-height: 1.4;
+    }
+
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+      border-color: rgba(255, 122, 26, 0.9);
+      box-shadow: 0 0 0 1px rgba(255, 122, 26, 0.8);
+      background: rgba(5, 5, 9, 0.96);
+    }
+
+    .contact-footnote {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    .contact-side {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-meta {
+      display: grid;
+      gap: 0.4rem;
+    }
+
+    .contact-meta strong {
+      color: var(--text-main);
+    }
+
+    .contact-meta span {
+      display: block;
+    }
+
+    .contact-chip {
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .contact-chip-dot {
+      height: 8px;
+      width: 8px;
+      border-radius: 999px;
+      background: var(--success);
+    }
+
+    .contact-img {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-height: 180px;
+    }
+
+    .contact-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 1.8rem 0 2rem;
+      margin-top: 2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .nav-inner {
+        flex-wrap: wrap;
+        row-gap: 0.75rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .process-grid,
+      .audit-grid,
+      .contact-grid,
+      .commodities-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        padding-inline: 1.1rem;
+      }
+
+      .nav-inner {
+        padding-block: 0.8rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .stats-band {
+        padding: 0.9rem 1rem;
+      }
+
+      .card,
+      .contact-card {
+        padding-inline: 1rem;
+      }
+
+      section {
+        padding-block: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="shell nav-inner">
+        <div class="brand">
+          <img src="./assets/aci.jpeg" alt="" width="35">
+          <div class="brand-text">
+            <div class="brand-title">ACI.</div>
+            <div class="brand-sub">African · Commodity · Inspection</div>
+          </div>
+        </div>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#industries">Commodities</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#credibility">Compliance</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="#contact" class="btn btn-primary">Request inspection</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <div class="hero-eyebrow">
+              <span></span>
+              Trusted third‑party inspection · South Africa
+            </div>
+            <h1 class="hero-title">
+              Independent <span>mineral & commodity</span> inspection
+            </h1>
+            <!-- <p class="hero-subtitle">
+              African Commodity Inspection provides independent quantity, quality and safety inspections for mined commodities, helping exporters, traders and financiers protect value across South Africa’s mines and ports.
+            </p> -->
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Book an Inspection</a>
+              <a href="#services" class="btn btn-outline">View our catalogue</a>
+            </div>
+            <div class="hero-metas">
+              <span><strong>24/7</strong> response for port calls</span>
+              <span><strong>On‑site</strong> coverage in major mining regions</span>
+              <span><strong>SAMREC‑aligned</strong> technical reporting</span>
+            </div>
+          </div>
+
+          <aside class="hero-right" aria-label="Inspection hero image">
+            <div class="hero-img-wrap">
+              <!-- Hero image: mining site inspection -->
+              <img src="https://aradbranding-en-uploads.fsn1.your-objectstorage.com/topics/40cbfc270f8c4f58f3f4186995d8f4b3117bb845.webp"
+                   alt="Mining inspection team at an open-pit mine" />
+              <div class="hero-img-tag">
+                On‑site geologists and inspectors measuring quality at an active mining operation.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- TRUST / PARTNERS -->
+      <section aria-label="Clients and partners">
+        <div class="shell">
+          <div class="trust-strip">
+            <div>
+              Working with mining houses, traders and logistics providers moving minerals and metals through South Africa’s major corridors.
+            </div>
+            <div class="trust-logos">
+              <span class="trust-pill">Mining exports</span>
+              <span class="trust-pill">Trade finance</span>
+              <span class="trust-pill">Logistics & ports</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">Core services</p>
+              <h2 class="section-title">Mining & commodity inspection</h2>
+            </div>
+            <p class="section-copy">
+              From in‑pit sampling to vessel draft surveys, African Commodity Inspection covers the full movement of ore, concentrates and bulk commodities with independent, defensible reporting.
+            </p>
+          </div>
+
+          <div class="service-grid">
+            <article class="card">
+              <div class="card-img">
+                <!-- Pit and stockpile -->
+                <img src="https://www.mdpi.com/minerals/minerals-11-00636/article_deploy/html/images/minerals-11-00636-g001-550.jpg"
+                     alt="Ore stockpiles at a mine" />
+              </div>
+              <div class="card-header">
+                <div>
+                  <p class="card-label">On‑site mining inspection</p>
+                  <h3 class="card-title">Pit, plant & stockpile</h3>
+                </div>
+                <span class="card-badge">Mine‑site</span>
+              </div>
+              <p class="card-body">
+                Independent verification of grades, moisture and tonnages at mine and rail‑siding to align production, contracts and payment schedules.
+              </p>
+              <ul class="card-list">
+                <li>Ore stockpile measurement and reconciliation</li>
+                <li>Sampling and sample preparation supervision</li>
+                <li>Moisture, density and sizing checks</li>
+                <li>Loading and truck movement oversight</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="card-img">
+                <!-- Port loading -->
+                <img src="https://thumbs.dreamstime.com/b/loading-coal-cargo-barges-onto-bulk-carrier-using-ship-cranes-grabs-port-muara-pantai-indonesia-january-236345576.jpg"
+                     alt="Bulk cargo loading at port" />
+              </div>
+              <div class="card-header">
+                <div>
+                  <p class="card-label">Port & terminal supervision</p>
+                  <h3 class="card-title">Cargo loading & discharge</h3>
+                </div>
+                <span class="card-badge">Port</span>
+              </div>
+              <p class="card-body">
+                Full supervision of vessel, barge and container operations to protect cargo quality, quantity and condition at South African ports.
+              </p>
+              <ul class="card-list">
+                <li>Draft surveys and tally verification</li>
+                <li>Hatch, hold and conveyor inspections</li>
+                <li>Loading, trimming and stowage supervision</li>
+                <li>Out‑turn surveys and loss investigations</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="card-img">
+                <!-- Mineral testing lab -->
+                <img src="https://www.alsglobal.com/-/media/ALSGlobal/Heros/Parallax-Heros/ALS-Your-partner--collaborator/Control-Screening-ALS.jpg?h=836&iar=0&w=1049&hash=5A31C1A621460FAC515746A6A3686B9F"
+                     alt="Technician examining mineral samples in laboratory" />
+              </div>
+              <div class="card-header">
+                <div>
+                  <p class="card-label">Laboratory & assay liaison</p>
+                  <h3 class="card-title">Sampling & quality control</h3>
+                </div>
+                <span class="card-badge">Quality</span>
+              </div>
+              <p class="card-body">
+                Chain‑of‑custody supervision from primary sampling to final assay, ensuring that commercial decisions rest on credible numbers.
+              </p>
+              <ul class="card-list">
+                <li>Sampling protocol review and design</li>
+                <li>Witnessing of sample collection and splitting</li>
+                <li>Laboratory coordination and assay validation</li>
+                <li>Independent counter‑sample management</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <div class="card-img">
+                <!-- Audit & reporting -->
+                <img src="https://images.ctfassets.net/ueprkma36dz5/3NwbAEKDAWBOYgO9pHxHcU/041563f0f51067e88f81208bde8008c4/Mining-Inspections-Featured-Image.jpg"
+                     alt="Team analyzing mining inspection reports" />
+              </div>
+              <div class="card-header">
+                <div>
+                  <p class="card-label">Risk & compliance</p>
+                  <h3 class="card-title">Audit, advisory & reporting</h3>
+                </div>
+                <span class="card-badge">Advisory</span>
+              </div>
+              <p class="card-body">
+                Structured inspections and reporting aligned with mining, safety and environmental frameworks to support governance and financing requirements.
+              </p>
+              <ul class="card-list">
+                <li>Site inspection programs and self‑assessment support</li>
+                <li>HSE and procedural compliance checks</li>
+                <li>Contractual quantity and quality review</li>
+                <li>Board‑ready inspection and exception reports</li>
+              </ul>
+            </article>
+          </div>
+
+          <div style="margin-top:1.7rem;">
+            <div class="stats-band">
+              <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Independent & neutral</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">Pit → Port</div>
+                <div class="stat-label">End‑to‑end visibility</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">Single report</div>
+                <div class="stat-label">For banks & buyers</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">Multi‑commodity</div>
+                <div class="stat-label">Ores, metals, bulks</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section id="process">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">How we work</p>
+              <h2 class="section-title">Inspection workflow</h2>
+            </div>
+            <p class="section-copy">
+              A clear, repeatable workflow keeps all parties aligned, from first instruction through final signed report, with time‑stamped evidence at every step.
+            </p>
+          </div>
+
+          <div class="process-grid">
+            <ol class="step-list">
+              <li class="step">
+                <div class="step-index">01</div>
+                <div>
+                  <div class="step-title">Instruction & scope definition</div>
+                  <p class="step-copy">
+                    Receive written instructions, contracts and technical specs, then define the inspection scope, reporting format and communication lines between all parties.
+                  </p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="step-index">02</div>
+                <div>
+                  <div class="step-title">Mobilisation & on‑site inspection</div>
+                  <p class="step-copy">
+                    Deploy experienced surveyors to the mine, siding or port, capturing photographic evidence, readings, sampling logs and operational observations.
+                  </p>
+                </div>
+              </li>
+              <li class="step">
+                <div class="step-index">03</div>
+                <div>
+                  <div class="step-title">Verification, reconciliation & reporting</div>
+                  <p class="step-copy">
+                    Reconcile quantities and quality against contracts and third‑party data, then issue a signed inspection certificate and report suitable for contractual and financing use.
+                  </p>
+                </div>
+              </li>
+            </ol>
+
+            <aside class="process-card">
+              <strong>Always independent, always auditable.</strong>
+              <p>
+                African Commodity Inspection acts as a neutral third party between sellers, buyers, banks and insurers, providing a defensible record of what was shipped, when and in what condition.
+              </p>
+              <div class="process-img">
+                <!-- Lab samples image -->
+                <img src="https://www.canadianminingjournal.com/wp-content/uploads/2025/08/AdobeStock_1444912606-1024x683.jpeg"
+                     alt="Mineral samples being tested in laboratory" />
+              </div>
+              <p>
+                Data is captured in a structured way so that repeat campaigns, long‑term offtake agreements and performance audits can be supported without re‑inventing the process each time.
+              </p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- INDUSTRIES / COMMODITIES / REGIONS -->
+      <section id="industries">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">Coverage</p>
+              <h2 class="section-title">Commodities & regions</h2>
+            </div>
+            <p class="section-copy">
+              Focused on South Africa with the ability to support cross‑border movements throughout the SADC region for key minerals and bulk commodities.
+            </p>
+          </div>
+
+          <div class="commodities-grid">
+            <div>
+              <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.16em;margin-bottom:0.5rem;">
+                Core mineral streams
+              </h3>
+              <div class="pill-grid">
+                <span class="pill highlight">Iron ore</span>
+                <span class="pill highlight">Manganese</span>
+                <span class="pill highlight">Chrome</span>
+                <span class="pill highlight">Coal</span>
+                <span class="pill">PGM concentrates</span>
+                <span class="pill">Base‑metal concentrates</span>
+                <span class="pill">Industrial minerals</span>
+              </div>
+              <h3 style="font-size:0.9rem;text-transform:uppercase;letter-spacing:0.16em;margin:1.5rem 0 0.5rem;">
+                South African corridors
+              </h3>
+              <div class="pill-grid">
+                <span class="pill">Bushveld & Limpopo</span>
+                <span class="pill">Mpumalanga coalfields</span>
+                <span class="pill">Northern Cape iron ore belt</span>
+                <span class="pill">Durban port</span>
+                <span class="pill">Richards Bay Coal Terminal</span>
+                <span class="pill">Ngqura & Gqeberha</span>
+                <span class="pill">Johannesburg & Gauteng hub</span>
+              </div>
+            </div>
+
+            <div class="commodities-img">
+              <!-- Ore samples / stockpile -->
+              <img src="https://www.bombaytesthouse.com/assets/images/8176d6kAW0L._AC_UF1000%2C1000_QL80_.jpg"
+                   alt="Ore samples and mineral analysis" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREDIBILITY / COMPLIANCE -->
+      <section id="credibility">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">Compliance & assurance</p>
+              <h2 class="section-title">Inspection frameworks</h2>
+            </div>
+            <p class="section-copy">
+              Inspection programs align with applicable mining, safety and environmental requirements while also matching the expectations of international traders and financiers.
+            </p>
+          </div>
+
+          <div class="audit-grid">
+            <article class="audit-card">
+              <p class="audit-tag">Technical & safety</p>
+              <h3 class="audit-title">Structured mine inspections</h3>
+              <p>
+                Mine‑site inspections are structured around checklists and templates that consider site conditions, equipment, roadways, emergency readiness and environmental aspects.
+              </p>
+              <ul class="audit-list">
+                <li>Physical conditions, signage and access control</li>
+                <li>Equipment readiness and maintenance records</li>
+                <li>Haul roads, loading areas and stockyard layout</li>
+                <li>Emergency response, PPE and safety procedures</li>
+              </ul>
+              <div class="audit-img">
+                <!-- Mine safety inspection -->
+                <img src="https://beckerwmsusa.com/wp-content/uploads/2023/11/safety-mining-reminders.jpg"
+                     alt="Engineers conducting safety inspection at mine" />
+              </div>
+            </article>
+
+            <article class="audit-card">
+              <p class="audit-tag">Governance & reporting</p>
+              <h3 class="audit-title">Defensible documentation</h3>
+              <p>
+                Every inspection results in a structured, time‑stamped dossier that can be shared with buyers, financiers, auditors and insurers as a neutral view of on‑the‑ground conditions.
+              </p>
+              <ul class="audit-list">
+                <li>Inspection instructions and scope definition</li>
+                <li>Photographic, quantitative and narrative evidence</li>
+                <li>Variance analysis and exception reporting</li>
+                <li>Signed certificates for contractual reliance</li>
+              </ul>
+              <div class="audit-img">
+                <!-- Report and documents -->
+                <img src="https://thumbs.dreamstime.com/b/miner-hands-rough-diamond-2477773.jpg"
+                     alt="Closeup of hands analyzing mining reports" />
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMAGE GALLERY -->
+      <section id="gallery">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">Field & laboratory</p>
+              <h2 class="section-title">Inspection imagery</h2>
+            </div>
+            <p class="section-copy">
+              Visual documentation forms part of every inspection, capturing mine conditions, stockpiles, cargo holds and laboratory testing steps for a complete audit trail.
+            </p>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-item">
+              <img src="https://static.vecteezy.com/system/resources/thumbnails/067/412/766/small/lab-technician-using-pipette-to-analyze-samples-in-test-tubes-for-medical-diagnostics-and-scientific-research-photo.jpg"
+                   alt="Technician checking mineral samples in lab" />
+              <div class="gallery-tag">Laboratory testing</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://u-mercari-images.mercdn.net/photos/m12163419734_3.jpg"
+                   alt="Ore samples on lab table" />
+              <div class="gallery-tag">Ore samples</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://www.gim-international.com/cache/2/2/1/9/0/2219007cd06791fb64e8e5e3e81e7c7f081a4aa5.jpeg"
+                   alt="Surveyor using GPS device at open pit mine" />
+              <div class="gallery-tag">On‑site survey</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://innovatecoal.co.za/sitepad-data/uploads/2023/08/Coal-Stockpile-Sampling.png"
+                   alt="Coal samples being examined" />
+              <div class="gallery-tag">Coal inspection</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://cargoburg.com/wp-content/uploads/2025/03/Tincan-Port-Cargo-Handling-2.webp"
+                   alt="Engineer supervising cargo at port" />
+              <div class="gallery-tag">Port supervision</div>
+            </div>
+            <div class="gallery-item">
+              <img src="https://img.freepik.com/premium-photo/drone-inspection-large-open-pit-mine_317958-7228.jpg"
+                   alt="Drone inspection over open pit mine" />
+              <div class="gallery-tag">Aerial inspection</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="shell">
+          <div class="section-header">
+            <div>
+              <p class="section-eyebrow">Next step</p>
+              <h2 class="section-title">Request an inspection</h2>
+            </div>
+            <p class="section-copy">
+              Share basic details about your shipment or mining operation and the team will revert with availability, scope and a clear cost structure.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <form class="contact-form">
+                <div class="field">
+                  <label for="name">Contact person</label>
+                  <input class="input" type="text" id="name" name="name" placeholder="Full name" />
+                </div>
+                <div class="field">
+                  <label for="company">Company</label>
+                  <input class="input" type="text" id="company" name="company" placeholder="Organisation or trading entity" />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input class="input" type="email" id="email" name="email" placeholder="name@company.co.za" />
+                </div>
+                <div class="field">
+                  <label for="location">Mine / port location</label>
+                  <input class="input" type="text" id="location" name="location" placeholder="e.g. Northern Cape · Richards Bay · Limpopo" />
+                </div>
+                <div class="field">
+                  <label for="commodity">Commodity</label>
+                  <input class="input" type="text" id="commodity" name="commodity" placeholder="e.g. Manganese, chrome, coal, iron ore" />
+                </div>
+                <div class="field">
+                  <label for="scope">Inspection scope</label>
+                  <textarea class="textarea" id="scope" name="scope" placeholder="Briefly describe the shipment or operation, timing and the type of inspection required."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send inspection request</button>
+                <p class="contact-footnote">
+                  By submitting, you authorise African Commodity Inspection to contact you regarding this enquiry. On‑call support is available for urgent port calls.
+                </p>
+              </form>
+            </div>
+
+            <aside class="contact-side">
+              <div class="contact-meta">
+                <div class="contact-chip">
+                  <span class="contact-chip-dot"></span>
+                  <span>24/7 port call support</span>
+                </div>
+                <div>
+                  <strong>Head office · South Africa</strong>
+                  <span>Johannesburg / Pretoria hub with on‑ground coverage in key mining and port regions.</span>
+                </div>
+              </div>
+              <div class="contact-meta">
+                <strong>Typical response times</strong>
+                <span>Same‑day response to written enquiries and rapid mobilisation for urgent inspections where feasible.</span>
+              </div>
+              <div class="contact-meta">
+                <strong>Ideal for</strong>
+                <span>Mining producers, traders, steel mills, utilities, logistics providers, trade financiers and insurers requiring an independent view of quantity and quality.</span>
+              </div>
+              <div class="contact-img">
+                <!-- Contact / meeting image -->
+                <img src="https://media.istockphoto.com/id/1796832170/photo/caucasian-male-civil-engineer-talking-to-hispanic-female-inspector-and-using-tablet-on.jpg?s=612x612&w=0&k=20&c=_ztH4a2IBhUq59SvsmgdoHMyNqbvf4IIJpkMNu6NKFY="
+                     alt="Business meeting in mining sector" />
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer-inner">
+        <div>
+          © <span id="year">2025</span> African Commodity Inspection. All rights reserved.
+        </div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#credibility">Compliance</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
